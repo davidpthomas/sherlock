@@ -238,8 +238,8 @@ def sherlock(
 
     # Limit number of workers to 20.
     # This is probably vastly overkill.
-    if len(site_data) >= 20:
-        max_workers = 20
+    if len(site_data) >= 10:
+        max_workers = 10
     else:
         max_workers = len(site_data)
 
