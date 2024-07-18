@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-# CVE-2021-4034 in Python
 #
 # Joe Ammond (joe@ammond.org)
 #
