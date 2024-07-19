@@ -23,11 +23,17 @@ linter:
   script:
     - echo "Linter"
 
-unit-tests:
+unit-tests-A-group:
   stage: test-phase-1
   needs: []
   script:
-    - echo "Unit Tests"
+    - echo "Unit Tests - A Group"
+
+unit-tests-B-group:
+  stage: test-phase-1
+  needs: []
+  script:
+    - echo "Unit Tests - B Group"
 
 functional-tests:
   stage: test-phase-2
