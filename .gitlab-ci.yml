@@ -1,0 +1,37 @@
+compile:
+  stage: build
+  needs: []
+  script:
+    - echo "Compiling Source"
+
+docs:
+  stage: build
+  needs: []
+  script:
+    - echo "Building Docs"
+
+unit-tests:
+  stage: test-phase-1
+  needs: []
+  script:
+    - echo "Unit Tests"
+
+functional-tests:
+  stage: test-phase-2
+  needs: []
+  script:
+    - echo "Functional Tests"
+
+
+integration-tests:
+  stage: test-phase-2
+  needs: []
+  script:
+    - echo "Integration Tests"
+
+deploy-review:
+  stage: review
+  needs: []
+  script:
+    - echo "Launching Review Env"
+
