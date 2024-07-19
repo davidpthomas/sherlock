@@ -24,12 +24,12 @@ class TestCodeUnderTest:
     def test_interpolates_username_into_dictionary(self):
         input_dict = {
             'key1': 'Hello, {}!',
-            'key2': 'Welcome, {}!'
+            'key2': 'Welcome Back, {}!'
         }
         username = "Sherlock"
         expected_output = {
             'key1': 'Hello, Sherlock!',
-            'key2': 'Welcome, Sherlock!'
+            'key2': 'Welcome Back, Sherlock!'
         }
         assert interpolate_string(input_dict, username) == expected_output
 
