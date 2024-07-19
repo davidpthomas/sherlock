@@ -1,3 +1,10 @@
+stages:
+  - build
+  - test-phase-1
+  - test-phase-2
+  - security
+  - review
+
 compile:
   stage: build
   needs: []
@@ -9,6 +16,12 @@ docs:
   needs: []
   script:
     - echo "Building Docs"
+
+linter:
+  stage: test-phase-1
+  needs: []
+  script:
+    - echo "Linter"
 
 unit-tests:
   stage: test-phase-1
@@ -28,6 +41,13 @@ integration-tests:
   needs: []
   script:
     - echo "Integration Tests"
+
+sast:
+  stage: security
+  needs: []
+  script:
+    - echo "SAST scans"
+
 
 deploy-review:
   stage: review
