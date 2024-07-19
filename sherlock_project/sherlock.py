@@ -138,16 +138,33 @@ def get_response(request_future, error_type, social_network):
 
     return response, error_context, exception_text
 
-
 def interpolate_string(input_object, username):
     if isinstance(input_object, str):
-        return input_object.replace("{}", username)
+        return interpolate_string_str(input_object, username)
     elif isinstance(input_object, dict):
-        return {k: interpolate_string(v, username) for k, v in input_object.items()}
+        return interpolate_string_dict(input_object, username)
     elif isinstance(input_object, list):
-        return [interpolate_string(i, username) for i in input_object]
+        return interpolate_string_list(input_object, username)
     return input_object
 
+"""
+Interpolates a given string by replacing '{}' with the provided username.
+
+Parameters:
+- input_str (str): The string to interpolate.
+- username (str): The username to insert into the string.
+
+Returns:
+- str: The interpolated string with the username inserted.
+"""
+def interpolate_string_str(input_str, username):
+    return input_str.replace("{}", username)
+
+def interpolate_string_dict(input_dict, username):
+    return {k: interpolate_string(v, username) for k, v in input_dict.items()}
+
+def interpolate_string_list(input_list, username):
+    return [interpolate_string(i, username) for i in input_list]
 
 def check_for_parameter(username):
     """checks if {?} exists in the username
