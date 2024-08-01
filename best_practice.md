@@ -1,6 +1,10 @@
 ## Recommend Python Best Practices
 This document outlines a series of recommended best practices for Python development. These guidelines aim to improve code quality, maintainability, and readability.
 
+### Documentation
+
+All source code documentation must be in reST format.
+
 ###  Imports
 
 Use  `import`  statements for packages and modules only, not for individual types, classes, or functions.
