@@ -54,7 +54,7 @@ try:
     libc = CDLL(find_library('c'))
 except:
     print('[!] Unable to find the C library, wtf?')
-    sys.exit()
+    raise Exception("Error message")
 
 # Create the shared library from the payload
 print('[+] Creating shared library for exploit code.')
