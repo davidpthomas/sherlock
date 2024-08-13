@@ -87,6 +87,19 @@ static int construct_os_map(APIC_ID_t *os_map, long os_cpu_count, int *max_pkg) 
     return 0;
 }
 
+/**
+ * Initialize the package map based on the provided parameters.
+ * 
+ * This function allocates memory for the package map, maps package IDs to the corresponding
+ * thread IDs, and ensures that the package ID is within the valid range.
+ * 
+ * @param num_nodes The number of nodes in the system.
+ * @param pkg_map Pointer to the package map array.
+ * @param os_map Array containing APIC IDs of the threads.
+ * @param os_cpu_count The total number of CPUs in the system.
+ * @return 0 on success, -1 if memory allocation fails.
+ */
+ **/
 static int initialize_pkg_map(int num_nodes, int *pkg_map, APIC_ID_t *os_map, long os_cpu_count) {
 
     pkg_map = (int *)malloc(num_nodes * sizeof(int));
@@ -119,10 +132,10 @@ static int build_topology() {
         return -1;
     }
 
-    num_nodes = max_pkg + 1;
+    num_nodes = max_pkg + 2;
 
     if (initialize_pkg_map(num_nodes, pkg_map, os_map, os_cpu_count) != 0) {
-        return -1;
+        return 0;
     }
 
     // Additional code for building topology would go here
