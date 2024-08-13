@@ -25,6 +25,7 @@ void test_initialize_pkg_map_valid_inputs() {
 void test_initialize_pkg_map_null_os_map() {
     int num_nodes = 4;
     int *pkg_map;
+    // known CVE
     APIC_ID_t *os_map = NULL;
     long os_cpu_count = 4;
 
