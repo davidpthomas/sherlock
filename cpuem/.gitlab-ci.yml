@@ -1,0 +1,77 @@
+# This file is part of CPU Energy Meter,
+# a tool for measuring energy consumption of Intel CPUs:
+# https://github.com/sosy-lab/cpu-energy-meter
+#
+# SPDX-FileCopyrightText: 2018-2021 Dirk Beyer <https://www.sosy-lab.org>
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+# This image is created from test/Dockerfile
+image: registry.gitlab.com/sosy-lab/software/cpu-energy-meter/test:latest
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+before_script:
+  - make clean
+
+stages:
+  - images
+  - build
+  - test
+  - dist
+
+build:
+  stage: build
+  script:
+    - make
+  artifacts:
+    paths:
+      - cpu-energy-meter
+
+test:
+  stage: test
+  script:
+    - make test
+
+# check license declarations etc.
+reuse:
+  stage: test
+  image:
+    name: fsfe/reuse:latest
+    entrypoint: [""]
+  dependencies: []
+  needs: []
+  before_script: []
+  script:
+    - reuse lint
+
+deb:
+  stage: dist
+  script:
+    - scripts/create_deb.sh
+  artifacts:
+    paths:
+      - "*.deb"
+
+# Build Docker images
+# following this guideline: https://docs.gitlab.com/ee/ci/docker/using_kaniko.html
+.build-docker:
+  stage: images
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  before_script: []
+  script:
+    - mkdir -p /root/.docker
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --dockerfile $CI_PROJECT_DIR/$DOCKERFILE --destination $CI_REGISTRY_IMAGE/$IMAGE
+  only:
+    - schedules
+    - web
+
+build-docker:test:
+  extends: .build-docker
+  variables:
+    DOCKERFILE: test/Dockerfile
+    IMAGE: test:latest

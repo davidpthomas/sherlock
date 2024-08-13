@@ -1,0 +1,17 @@
+cpu-energy-meter (1.2-1) bionic; urgency=medium
+
+  * New upstream version.
+
+ -- Philipp Wendler <debian@philippwendler.de>  Tue, 27 Aug 2019 15:00:37 +0200
+
+cpu-energy-meter (1.1-1) bionic; urgency=medium
+
+  * New upstream version.
+
+ -- Philipp Wendler <debian@philippwendler.de>  Fri, 12 Apr 2019 09:08:40 +0200
+
+cpu-energy-meter (1.0-1) xenial; urgency=medium
+
+  * Initial release.
+
+ -- Philipp Wendler <debian@philippwendler.de>  Wed, 31 Jan 2018 14:00:59 +0100
