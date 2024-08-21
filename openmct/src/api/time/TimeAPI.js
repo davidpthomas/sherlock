@@ -171,12 +171,6 @@ class TimeAPI extends GlobalTimeContext {
     return this.independentContexts.get(key);
   }
 
-  /**
-   * Get the a timeContext for a view based on it's objectPath. If there is any object in the objectPath with an independent time context, it will be returned.
-   * Otherwise, the global time context will be returned.
-   * @param {Array} objectPath The view's objectPath
-   * @returns {TimeContext | GlobalTimeContext} The time context
-   */
   getContextForView(objectPath) {
     if (!objectPath || !Array.isArray(objectPath)) {
       throw new Error('No objectPath provided');
