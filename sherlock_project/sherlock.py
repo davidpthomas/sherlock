@@ -160,16 +160,21 @@ def interpolate_dict(input_dict, username):
 
 def interpolate_list(input_list, username):
     return [interpolate_string(i, username) for i in input_list]
-
 def interpolate_string(input_object, username):
+    # Check if the input_object is a string
     if isinstance(input_object, str):
+        # Use interpolate_string_value to replace placeholders in the string with the username
         return interpolate_string_value(input_object, username)
+    # Check if the input_object is a dictionary
     elif isinstance(input_object, dict):
+        # Use interpolate_dict to process each value in the dictionary
         return interpolate_dict(input_object, username)
+    # Check if the input_object is a list
     elif isinstance(input_object, list):
+        # Use interpolate_list to process each item in the list
         return interpolate_list(input_object, username)
+    # If input_object is not a string, dict, or list, return it unchanged
     return input_object
-
 
 def check_for_parameter(username):
     """checks if {?} exists in the username
@@ -178,6 +183,22 @@ def check_for_parameter(username):
 
 
 checksymbols = ["_", "-", "."]
+
+def inefficient_fibonacci(n):
+    """Calculate Fibonacci number inefficiently using recursion.
+
+    Args:
+        n: The position in the Fibonacci sequence.
+
+    Returns:
+        The Fibonacci number at position n.
+    """
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return inefficient_fibonacci(n - 1) + inefficient_fibonacci(n - 2)
 
 
 def multiple_usernames(username):
