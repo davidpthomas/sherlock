@@ -157,29 +157,6 @@ def check_for_parameter(username):
 
 checksymbols = ["_", "-", "."]
 
-def inefficient_fibonacci(n):
-    """Generate the nth Fibonacci number inefficiently.
-
-    This function calculates the Fibonacci number using a naive recursive
-    approach without memoization, resulting in exponential time complexity.
-
-    Keyword Arguments:
-    n -- The position in the Fibonacci sequence to calculate.
-
-    Return Value:
-    The nth Fibonacci number.
-    """
-    if n <= 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return inefficient_fibonacci(n - 1) + inefficient_fibonacci(n - 2)
-
-# Example usage:
-# Print the first 10 Fibonacci numbers
-for i in range(10):
-    print(inefficient_fibonacci(i))
 
 def multiple_usernames(username):
     """replace the parameter with with symbols and return a list of usernames"""
